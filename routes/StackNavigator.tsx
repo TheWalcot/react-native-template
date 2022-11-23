@@ -1,5 +1,12 @@
-import Login from "../pages/Login";
 import { createStackNavigator } from "@react-navigation/stack";
+import Signup from "../pages/Signup";
+import Login from "../pages/Login";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setStatusOfNotification } from "../store/features/notification/notification.slice";
+import ErrorModal from "../components/common/ErrorModal";
+import LoadingModal from "../components/common/LoadingModal";
+
 
 const Stack = createStackNavigator();
 
@@ -8,10 +15,24 @@ const AppNavigator = () => {
     headerShown: false,
   };
 
+  const dispatch = useDispatch();
+
+  const closeModal = () => {
+    dispatch(setStatusOfNotification(false));
+  };
+  const { notification, isNotificationVisible } = useSelector((state) => state.notification);
+  const { isModalVisible, loadingModalTxt, customComponent } = useSelector((state) => state.loadingModal);
+
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Login" component={Login} />
-    </Stack.Navigator>
+    <>
+      <ErrorModal closeModal={closeModal} isModalVisible={isNotificationVisible} notification={notification} />
+      <LoadingModal isVisible={isModalVisible} customComponent={customComponent} loadingModalTxt={loadingModalTxt} />
+      <Stack.Navigator screenOptions={screenOptions}>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
+      </Stack.Navigator>
+    </>
+
   );
 };
 

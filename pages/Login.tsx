@@ -12,9 +12,12 @@ import {
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins";
 
-type Props = {};
+
+
+type Props = {
+  navigation: any
+};
 
 const loginSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -44,6 +47,9 @@ const Login = (props: Props) => {
     console.log("formData :: ", formData);
   };
   const NoConnectionImg = require("../assets/images/loginPageLogo.png");
+
+  const { navigation } = props;
+
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -135,20 +141,31 @@ const Login = (props: Props) => {
                 Login
               </Text>
             </Button>
-            <Text
-              textAlign={"center"}
-              paddingTop={3}
-              fontSize={"14px"}
-              lineHeight={"14px"}
-            >
-              Don’t have account?{" "}
+            <VStack display={"flex"} flexDirection={"row"} padding={4} justifyContent="center" >
               <Text
-                onPress={() => console.log("navigate the signup page")}
-                color={"#3461FD"}
+                textAlign={"center"}
+                paddingTop={3}
+                fontSize={"14px"}
+                lineHeight={"14px"}
               >
-                Sign Up
+                Don’t have account?
+
               </Text>
-            </Text>
+              <Button
+                backgroundColor={"transparent"}
+                padding={0}
+                onPress={() => navigation.navigate("Signup")}
+                display="flex"
+                alignItems={"center"}
+                marginLeft={2}
+              >
+                <Text color={"#3461FD"}>
+                  Signup
+                </Text>
+              </Button>
+            </VStack>
+
+
           </VStack>
         </VStack>
       </VStack>
