@@ -8,6 +8,7 @@ import ErrorModal from "../components/common/ErrorModal";
 import LoadingModal from "../components/common/LoadingModal";
 import { useAppSelector } from "../store/hooks";
 import Home from "../pages/Home";
+import Tutorial from "../pages/Tutorial";
 
 
 const Stack = createStackNavigator();
@@ -30,6 +31,7 @@ const AppNavigator = () => {
       <ErrorModal closeModal={closeModal} isModalVisible={isNotificationVisible} notification={notification} />
       <LoadingModal isVisible={isModalVisible} customComponent={customComponent} loadingModalTxt={loadingModalTxt} />
       <Stack.Navigator screenOptions={screenOptions}>
+        <Stack.Screen name="Tutorial" component={Tutorial} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />

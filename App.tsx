@@ -6,6 +6,7 @@ import { store } from "./store/store";
 import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider, VStack } from "native-base";
 import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins";
+import 'react-native-reanimated'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
