@@ -26,7 +26,10 @@ export const deliveryApi = createApi({
         body: { email, password },
       }),
     }),
+    getProducts: builder.query({
+      query: () => ({ url: "v1/product", method: "GET" }),
+    }),
   }),
 });
 
-export const { endpoints, useLoginMutation } = deliveryApi;
+export const { endpoints, useLoginMutation, useGetProductsQuery } = deliveryApi;

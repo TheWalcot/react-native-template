@@ -9,7 +9,7 @@ import LoadingModal from "../components/common/LoadingModal";
 import { useAppSelector } from "../store/hooks";
 import Home from "../pages/Home";
 import Tutorial from "../pages/Tutorial";
-
+import Dummy from "../pages/Dummy";
 
 const Stack = createStackNavigator();
 
@@ -23,21 +23,34 @@ const AppNavigator = () => {
   const closeModal = () => {
     dispatch(setStatusOfNotification(false));
   };
-  const { notification, isNotificationVisible } = useAppSelector((state) => state.notification);
-  const { isModalVisible, loadingModalTxt, customComponent } = useAppSelector((state) => state.loadingModal);
-
+  const { notification, isNotificationVisible } = useAppSelector(
+    (state) => state.notification
+  );
+  const { isModalVisible, loadingModalTxt, customComponent } = useAppSelector(
+    (state) => state.loadingModal
+  );
+  // The Wallcoot feat: Rokasta12
   return (
     <>
-      <ErrorModal closeModal={closeModal} isModalVisible={isNotificationVisible} notification={notification} />
-      <LoadingModal isVisible={isModalVisible} customComponent={customComponent} loadingModalTxt={loadingModalTxt} />
+      <ErrorModal
+        closeModal={closeModal}
+        isModalVisible={isNotificationVisible}
+        notification={notification}
+      />
+      <LoadingModal
+        isVisible={isModalVisible}
+        customComponent={customComponent}
+        loadingModalTxt={loadingModalTxt}
+      />
       <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="Tutorial" component={Tutorial} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Dummy" component={Dummy} />
+        <Stack.Screen name="Tutorial" component={Tutorial} />
+
+        {/*         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} /> */}
       </Stack.Navigator>
     </>
-
   );
 };
 
